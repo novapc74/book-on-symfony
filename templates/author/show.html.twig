@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Show author {% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Author:</h4>
+            {{ author.id }}
+            {{ author.name }}
+            {% for book in author.books %}
+            <div>
+                <a href="{{ path('show_book', {id: book.id}) }}">
+                    <img src="{{ asset('build/images/' ~ book.image) }}"
+                        style="width: 70px; height: 99px;"
+                        alt="{{ 'image' }}">
+                </a>
+            </div>
+            <div>
+                {{ book.title }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

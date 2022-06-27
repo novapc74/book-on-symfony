@@ -1,20 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BookController!{% endblock %}
+{% block title %}Books{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/novapc/book-on-symfony/src/Controller/BookController.php'|file_link(0) }}">src/Controller/BookController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/novapc/book-on-symfony/templates/book/index.html.twig'|file_link(0) }}">templates/book/index.html.twig</a></code></li>
-    </ul>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-lg-9 col-lx-6 mx-auto">
+            <h4 class="my-3 text-secondary">Books:</h4>
+                {{ knp_pagination_render(pagination) }}
+            <table class="table table-hover text-center">
+                <thead class="bg-secondary text-white">
+                    <tr>
+                        <th scope="col">image</th>
+                        <th scope="col">isbn</th>
+                        <th scope="col">title</th>
+                        <th scope="col">status</th>
+                        <th scope="col">authors</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in pagination %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('show_book', {id: book.id}) }}">
+                                <img src="{{ asset( 'build/images/' ~ book.image) }}"
+                                    style="width: 70px; height: 99px;"
+                                    alt="{{ 'image' }}">
+                            </a>
+                        </td>
+                        <td>{{ book.isbn }}</td>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.status }}</td>
+                        <td>
+                            <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% for author in book.authors %}
+                                <a class="dropdown-item" href="{{ path('show_author', {id: author.id})}}">{{ author.name }}</a>
+                                {% endfor %}
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 {% endblock %}

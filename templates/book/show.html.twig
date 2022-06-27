@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-lg-9 col-lx-6 mx-auto">
+            <h4 class="my-3 text-primary">Book: <span class="text-dark h5">{{ book.title }}</span></h4>
+            <div>
+                <img src="{{ asset( 'build/images/' ~ book.image) }}"
+                    style="width: 70px; height: 99px;"
+                    alt="{{ 'image' }}">
+            </div>
+            <h5 class="my-3">pageCount: {{ book.pageCount }}</h5>
+            <h5 class="my-3">publishedDate: {{ time }}</h5>
+
+            <div id="accordion">
+            {% if book.shortDescription %}
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Short description
+                        </button>
+                    </h5>
+                    </div>
+
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        {{ book.shortDescription }}
+                    </div>
+                    </div>
+                </div>
+            {% endif %}
+            {% if book.longDescription %}
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Long description
+                        </button>
+                    </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        {{ book.longDescription }}
+                    </div>
+                    </div>
+                </div>
+            {% endif %}
+            </div>
+
+            <h5 class="my-3">category name:
+                <a class="nav nav-link" href="{{ path('show_category', {id: book.category.id}) }}">{{ book.category.name }}</a>
+            </h5>
+
+            {% if book.category.subname %}
+                <h5 class="my-3">category subname: <span class="text-dark h6">{{ book.category.subname }}</span></h5>
+            {% endif %}
+
+            <h5 class="my-3">authors: 
+                {% for author in book.authors %}
+                    <a class="nav nav-link" href="{{ path('show_author', {id: author.id}) }}">{{ author.name }}</a>
+                {% endfor %}
+            </h5>
+            {{ knp_pagination_render(paginateCategories) }}
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th scope="col">image</th>
+                    <th scope="col">title</th>
+                    <th scope="col">category</th>
+                    <th scope="col">subcategory</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for category in paginateCategories %}
+                    <tr>
+                    <th scope="row">
+                        <a href="{{ path('show_book', {id:category.id}) }}">
+                            <img src="{{ asset('build/images/' ~ category.image) }}"
+                                style="width: 70px; height: 99px;"
+                                alt="{{ 'image' }}">
+                        </a>
+                    </th>
+                    <td>{{ category.title }}</td>
+                    <td>{{ category.category.name }}</td>
+                    <td>{{ category.category.subname }}</td>
+                    </tr>
+                    <tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
