@@ -14,6 +14,12 @@ $ symfony console doctrine:schema:validate
 $symfony serve
 ```
 ***
+### Upload the books:
+```
+symfony console app:book-parser https://gitlab.com/prog-positron/test-app-vacancy/-/raw/master/books.json
+
+```
+***
 ### PostgresSQL
 ```
 $ sudo -u postgres psql
@@ -39,4 +45,3 @@ DB_PASSWORD=your_password
 // fore example (postgresSQL): 
 DATABASE_URL="postgresql://${DB_USER}:${DB_PASSWORD}@127.0.0.1:5432/${DB_NAME}?serverVersion=12.11&charset=utf8"
 ```
-***
