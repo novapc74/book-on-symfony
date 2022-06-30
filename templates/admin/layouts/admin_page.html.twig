@@ -1,0 +1,16 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}
+    Admin Panel - {% block title_detailed %} {% endblock %}
+{% endblock %}
+
+{% block layout_body %}
+    <body id="page-top">
+
+        {% include ('admin/include/nav_bar.html.twig') %}
+        {% include ('admin/include/flash_message.html.twig') %}
+
+        {% block body %}{% endblock %}
+
+    </body>
+{% endblock %}

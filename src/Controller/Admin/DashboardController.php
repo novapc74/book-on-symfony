@@ -14,14 +14,6 @@ class DashboardController extends AbstractController
     #[Route('/dashboard', name: 'admin_secured_dashboard')]
     public function index(): Response
     {
-        return $this->render('admin/dashboard.html.twig');
-    }
-
-    #[Route('/author/show{id}', name: 'show_author')]
-    public function show(AuthorRepository $authorRepository, $id): Response
-    {
-        $author = $authorRepository->find($id);
-    
-        return $this->render('main/author/show.html.twig', compact('author'));
+        return $this->render('/admin/dashboard/dashboard.html.twig');
     }
 }
