@@ -22,7 +22,7 @@ class CategoryController extends AbstractController
             8
         );
 
-        return $this->render('category/index.html.twig', compact('pagination'));
+        return $this->render('main/category/index.html.twig', compact('pagination'));
     }
 
     #[Route('/category/show/{id}', name: 'show_category')]
@@ -44,7 +44,7 @@ class CategoryController extends AbstractController
                 4
             );
 
-            return $this->render('category/show.html.twig', compact('paginationNeedleBooks', 'currentCategory'));
+            return $this->render('main/category/show.html.twig', compact('paginationNeedleBooks', 'currentCategory'));
         }
 
         $needleSubcategories = [];
@@ -70,7 +70,7 @@ class CategoryController extends AbstractController
             4
         );
 
-        return $this->render('category/show.html.twig', compact('paginationNeedleBooks', 'currentCategory'));
+        return $this->render('main/category/show.html.twig', compact('paginationNeedleBooks', 'currentCategory'));
     }
 
 }

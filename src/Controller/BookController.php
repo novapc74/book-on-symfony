@@ -22,7 +22,7 @@ class BookController extends AbstractController
             4
         );
 
-        return $this->render('book/index.html.twig', compact('pagination'));
+        return $this->render('main/book/index.html.twig', compact('pagination'));
     }
 
     #[Route('/show/{id}', name: 'show_book')]
@@ -50,6 +50,6 @@ class BookController extends AbstractController
                 'No book found for id: '. $id
             );
         }
-        return $this->render('book/show.html.twig', compact('book', 'time', 'paginateCategories'));
+        return $this->render('main/book/show.html.twig', compact('book', 'time', 'paginateCategories'));
     }
 }

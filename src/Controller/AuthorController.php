@@ -22,7 +22,7 @@ class AuthorController extends AbstractController
             8
         );
     
-        return $this->render('author/index.html.twig', compact('pagination'));
+        return $this->render('main/author/index.html.twig', compact('pagination'));
     }
 
     #[Route('/author/show{id}', name: 'show_author')]
@@ -30,6 +30,6 @@ class AuthorController extends AbstractController
     {
         $author = $authorRepository->find($id);
     
-        return $this->render('author/show.html.twig', compact('author'));
+        return $this->render('main/author/show.html.twig', compact('author'));
     }
 }

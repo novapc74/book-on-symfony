@@ -37,7 +37,7 @@ class RegistrationFormType extends AbstractType
                 ]
             ])
             ->add('agreeTerms', CheckboxType::class, [
-                'label' => 'I agree to the <a href="#">privacy polisy</a>',
+                'label' => 'I agree to the <a href="#">privacy policy</a>',
                 'required' => true,
                 'label_html' => true,
                 'mapped' => false,
