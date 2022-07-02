@@ -21,7 +21,7 @@ class Category
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $subname;
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Book::class)]
+    #[ORM\OneToMany(targetEntity: Book::class, mappedBy: 'category')]
     private $books;
 
     public function __construct()
@@ -86,5 +86,14 @@ class Category
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        if ($this->subname) {
+            return "{$this->name}, {$this->subname}";
+        }
+        
+        return $this->name;
     }
 }

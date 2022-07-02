@@ -18,7 +18,7 @@ class Book
     #[ORM\Column(type: 'string', length: 255)]
     private $title;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $isbn;
 
     #[ORM\Column(type: 'integer')]
@@ -52,6 +52,7 @@ class Book
     public function __construct()
     {
         $this->authors = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -201,5 +202,10 @@ class Book
         $this->image = $image;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->title;
     }
 }

@@ -1,0 +1,33 @@
+{% extends 'admin/layouts/admin_page.html.twig' %}
+
+{% block title %}Edit / Create book{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row d-flex justify-content-center py-3">
+        <div class="col-6">
+
+        {{form_start(form)}}
+
+            {{ form_row(form.title)}}
+            {{ form_row(form.isbn)}}
+            {{ form_row(form.pageCount)}}
+            {{ form_row(form.publishedDate)}}
+            {{ form_row(form.thumbnailUrl)}}
+            {{ form_row(form.shortDescription)}}
+            {{ form_row(form.longDescription)}}
+            {{ form_row(form.status)}}
+            {# {{ form_row(form.image)}} #}
+            {{ form_row(form.category)}}
+            {{ form_row(form.authors)}}
+
+        <input class="form-control btn btn-outline-danger mt-3" type='submit' values='Create'>
+
+        {{form_end(form)}}
+        
+        </div>
+    </div>
+</div>
+
+{% endblock %}

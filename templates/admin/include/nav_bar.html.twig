@@ -6,15 +6,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-warning" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{ path('app_category') }}">Categories</a>
-            <a class="dropdown-item" href="{{ path('app_author') }}">Authors</a>
-            <a class="dropdown-item" href="{{ path('app_book') }}">Books</a>
-          </div>
+        <li class="nav-item">
+            <a class="nav-link text-warning" href="{{ path('app_category') }}">Categories</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-warning" href="{{ path('admin_book') }}">Books</a>
         </li>
       </ul>
         <ul class="navbar-nav mr-right mx-3">

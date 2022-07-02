@@ -25,10 +25,9 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     private UrlGeneratorInterface $urlGenerator;
 
-    public function __construct(\App\Repository\UserRepository $userRepository, UrlGeneratorInterface $urlGenerator)
+    public function __construct(UrlGeneratorInterface $urlGenerator)
     {
         $this->urlGenerator = $urlGenerator;
-        $this->userRepository = $userRepository;
     }
 
     public function authenticate(Request $request): Passport
