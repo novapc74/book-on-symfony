@@ -5,7 +5,7 @@
 {% block body %}
 <div class="container">
     <div class="row">
-        <div class="col-md-12 col-lg-9 col-lx-6 mx-auto">
+        <div class="col mx-auto">
             <h4 class="my-3 text-secondary">Books:</h4>
                 {{ knp_pagination_render(pagination) }}
             <table class="table table-hover text-center">
@@ -19,7 +19,7 @@
                         <th scope="col">status</th>
                         <th scope="col">authors</th>
                         <th scope='col'>
-                            <a class="nav-item text-warning" href="{{ path('admin_book_create') }}">{{ 'Create' }}</a>
+                            <a class="nav-item text-warning" href="{{ path('admin_book_create') }}">{{ 'CREATE NEW' }}</a>
                         </th>
                     </tr>
                 </thead>

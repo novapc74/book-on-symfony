@@ -55,6 +55,7 @@ class CategoryController extends AbstractController
 
         foreach ($subcategories as $subcategory) {
             $needleSubcategory = $categoryRepository->findAllSubcategories($subcategory);
+
             foreach ($needleSubcategory as $currenSubcategory) {
                 $needleSubcategories[] = $currenSubcategory;
             }
@@ -93,7 +94,10 @@ class CategoryController extends AbstractController
 
             $categoryRepository->add($category, true);
 
-            $this->addFlash('success', 'Category whith id: '. $id . ', updated successfuly!');
+            $this->addFlash(
+                'success',
+                'Category whith id: '. $id . ', updated successfuly!'
+            );
 
             return $this->redirectToRoute('admin_category');
         }
@@ -107,9 +111,11 @@ class CategoryController extends AbstractController
         $deletedCategory = $categoryRepository->find($id);
 
         if (null === $deletedCategory) {
+
             throw $this->createNotFoundException(
                 'Not category found for id: ' . $id
             );
+
         }
 
         $removedBooks = $deletedCategory->getBooks();
@@ -120,10 +126,11 @@ class CategoryController extends AbstractController
 
         $categoryRepository->remove($deletedCategory, true);
 
-        $this->addFlash('success', "Category whith id: {$id}, deleted successfuly!");
+        $this->addFlash(
+            'success',
+            "Category whith id: {$id}, deleted successfuly!"
+        );
 
         return $this->redirectToRoute('admin_category');
     }
-
-
 }

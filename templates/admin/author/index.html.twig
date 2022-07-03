@@ -7,14 +7,18 @@
     <div class="row">
         <div class="coll mx-auto">
             <h4 class="my-3 text-secondary">Authors:</h4>
+
                 {{ knp_pagination_render(pagination) }}
+
             <table class="table table-hover text-center">
                 <thead class="bg-secondary text-white">
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">author</th>
                         <th scope="col">book</th>
-                        <th scope="col">create</th>
+                        <th scope="col">
+                        <a class="nav-item text-warning" href="{{ path('admin_author_create') }}">{{ 'CREATE NEW' }}</a>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,7 +38,7 @@
                         </td>
                         <td class="row">
                             <div class="col-md-6">
-                                <a class="nav-link btn text-primary" href="{#{ path('admin_author_edit', {id:author.id}) }#}">{{ 'Edit' }}</a>
+                                <a class="nav-link btn text-primary" href="{{ path('admin_author_edit', {id:author.id}) }}">{{ 'Edit' }}</a>
                             </div>
                             <div class="col-md-6">
                                 <form action="{{ path('admin_author_delete', { id: author.id }) }}" method="post">

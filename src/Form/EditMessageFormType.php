@@ -5,7 +5,7 @@ namespace App\Form;
 use App\Entity\Message;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -58,17 +58,17 @@ class EditMessageFormType extends AbstractType
                     'placeholder' => 'phone format: +8(XXX) XXX-XX-XX',
                 ],
             ])
-            ->add('delivered', IntegerType::class, [
-                'label' => "Delivered",
+            ->add('delivered', ChoiceType::class, [
+                'label' => 'Delivered',
                 'label_attr' => [
-                    'class' => 'form-check-label pt-3',
-                    'style'=>'display:none;'
+                    'class' => 'pt-3'
                 ],
-                'required' => false,
-                'attr' => [
-                    'class' => 'form-check',
-                    'style'=>'display:none;'
+                'choices' => [
+                    'Read' => true,
+                    'No read' => false,
                 ],
+                'expanded' => true,
+                'multiple' => false,
             ])
             ->add('captcha', ReCaptchaType::class);
     }

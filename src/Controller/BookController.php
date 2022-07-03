@@ -30,6 +30,7 @@ class BookController extends AbstractController
     {
         $book = $bookRepository->find($id);
         $date = $book->getPublishedDate();
+        
         if (null != ($date)) {
             $time = $date->format('d:m:Y');
         } else {

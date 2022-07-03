@@ -1,4 +1,4 @@
-{% extends 'main/base.html.twig' %}
+{% extends 'admin/layouts/admin_page.html.twig' %}
 
 {% block body %}
 
@@ -13,13 +13,6 @@
             {{ form_row(form.message)}}
             {{ form_row(form.phone)}}
             {{ form_row(form.captcha)}}
-            {{ form_row(form.delivered)}}
-
-            {# {{ form_row(form.delivered, {
-                    'label_attr': {'style': 'display:none'},
-                    'attr': {'style': 'display:none'}
-                    }
-                )}} #}
 
         <input class="form-control btn btn-outline-danger mt-3" type='submit' values='Edit'>
 

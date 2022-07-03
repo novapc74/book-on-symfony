@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Repository\BookRepository;
-use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -45,7 +44,9 @@ class BookController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $book = $form->getData();
+
             if (null === $book->getThumbnailUrl()) {
                 $book->setImage('default-book.jpg');
             } else {
@@ -55,7 +56,11 @@ class BookController extends AbstractController
             }
                 $entityManager = $doctrine->getManager();
                 $entityManager->flush();
-            $this->addFlash('success', 'Book whith id: '. $id . ', updated successfuly!');
+
+            $this->addFlash(
+                'success',
+                'Book whith id: '. $id . ', updated successfuly!'
+            );
 
             return $this->redirectToRoute('admin_book');
         }
@@ -69,9 +74,11 @@ class BookController extends AbstractController
         $deletedBook = $bookRepository->find($id);
 
         if (null === $deletedBook) {
+            
             throw $this->createNotFoundException(
                 'Not book found for id: ' . $id
             );
+
         }
 
         $deletedBook->setCategory(null);
@@ -82,7 +89,11 @@ class BookController extends AbstractController
 
         $bookRepository->remove($deletedBook, true);
 
-        $this->addFlash('success', 'Book whith id: '. $id . ', deleted successfuly!');
+        $this->addFlash(
+            'success',
+            'Book whith id: '. $id . ', deleted successfuly!'
+        );
+
         return $this->redirectToRoute('admin_book');
     }
 
@@ -90,6 +101,15 @@ class BookController extends AbstractController
     public function show(BookRepository $bookRepository, PaginatorInterface $paginator, Request $request, $id): Response
     {
         $book = $bookRepository->find($id);
+
+        if (null == $book) {
+
+            throw $this->createNotFoundException(
+                'No book found for id: '. $id
+            );
+
+        }
+        
         $date = $book->getPublishedDate();
         if (null != ($date)) {
             $time = $date->format('d:m:Y');
@@ -106,11 +126,6 @@ class BookController extends AbstractController
             4
         );
 
-        if (null == $book) {
-            throw $this->createNotFoundException(
-                'No book found for id: '. $id
-            );
-        }
         return $this->render('admin/book/show.html.twig', compact('book', 'time', 'paginateCategories'));
     }
 }

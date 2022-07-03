@@ -52,6 +52,7 @@ class CategoryController extends AbstractController
 
         foreach ($subcategories as $subcategory) {
             $needleSubcategory = $categoryRepository->findAllSubcategories($subcategory);
+            
             foreach ($needleSubcategory as $currenSubcategory) {
                 $needleSubcategories[] = $currenSubcategory;
             }
