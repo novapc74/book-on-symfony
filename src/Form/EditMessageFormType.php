@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\IsTrue;
+use VictorPrdh\RecaptchaBundle\Form\ReCaptchaType;
 
 class EditMessageFormType extends AbstractType
 {
@@ -70,7 +70,7 @@ class EditMessageFormType extends AbstractType
                     'style'=>'display:none;'
                 ],
             ])
-        ;
+            ->add('captcha', ReCaptchaType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

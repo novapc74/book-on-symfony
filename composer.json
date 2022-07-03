@@ -24,7 +24,8 @@
         "symfony/validator": "6.1.*",
         "symfony/webpack-encore-bundle": "^1.14",
         "symfony/yaml": "6.1.*",
-        "symfonycasts/verify-email-bundle": "^1.10"
+        "symfonycasts/verify-email-bundle": "^1.10",
+        "victor-prdh/recaptcha-bundle": "^1.6"
     },
     "require-dev": {
         "symfony/maker-bundle": "^1.43",

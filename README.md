@@ -45,3 +45,13 @@ DB_PASSWORD=your_password
 // fore example (postgresSQL): 
 DATABASE_URL="postgresql://${DB_USER}:${DB_PASSWORD}@127.0.0.1:5432/${DB_NAME}?serverVersion=12.11&charset=utf8"
 ```
+
+### reCaptcha v.2
+
+[get keys and set into .env file](https://www.google.com/recaptcha/admin/)
+```
+###> victor-prdh/recaptcha-bundle ###
+GOOGLE_RECAPTCHA_SITE_KEY="xxxXXxxXXxxxxXXXxxxxxxxXxxx"     /* site key   */
+GOOGLE_RECAPTCHA_SECRET_KEY="xxxXXxxXXxxxxXXXxxxxxxxXxxx"   /* secret key */
+###< victor-prdh/recaptcha-bundle ###
+```
