@@ -18,7 +18,7 @@ class EditAuthorFormType extends AbstractType
                 'label_attr' => [
                     'class' => 'pt-3'
                 ],
-                'required' => true,
+                'required' => false,
                 'attr' => [
                     'class' => 'form-control text-primary'
                 ]

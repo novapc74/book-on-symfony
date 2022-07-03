@@ -1,0 +1,42 @@
+{% extends 'main/base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="coll mx-auto">
+            <h4 class="my-3 text-secondary">{{ 'Messages' }}:</h4>
+            <table class="table table-hover text-center">
+                <thead class="bg-secondary text-white">
+                    <tr>
+                        <th scope="col">email</th>
+                        <th scope="col">name</th>
+                        <th scope="col">message</th>
+                        <th scope="col">phone</th>
+                        <th scope="col">delivered</th>
+                        <th scope="col">action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for message in messages %}
+                    <tr>
+                        <td>{{ message.email }}</td>
+                        <td>{{ message.name }}</td>
+                        <td>{{ message.message }}</td>
+                        <td>{{ message.phone }}</td>
+                        <td>{{ message.delivered }}</td>
+                        <td class="row">
+                            <div class="col-md-6">
+                                <form action="{{ path('message_delete', { id: message.id }) }}" method="post">
+                                    <input type="hidden" name="token" value="{{ csrf_token('message_delete') }}"/>
+                                    <button class="nav-link btn text-danger border-0 bg-transparent" type="submit">{{ 'Delete' }}</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

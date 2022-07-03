@@ -39,11 +39,11 @@ class Book
     #[ORM\Column(type: 'string', length: 255)]
     private $status;
 
-    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'books')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'books', cascade: ["persist"])]
+    #[ORM\JoinColumn(nullable: true)]
     private $category;
 
-    #[ORM\ManyToMany(targetEntity: Author::class, inversedBy: 'books')]
+    #[ORM\ManyToMany(targetEntity: Author::class, inversedBy: 'books', cascade: ["persist"])]
     private $authors;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]

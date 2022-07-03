@@ -54,11 +54,11 @@ class AuthorRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Author
+//    public function findOneByName($name): ?Author
 //    {
 //        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
+//            ->andWhere('a.name = :val')
+//            ->setParameter('val', $name)
 //            ->getQuery()
 //            ->getOneOrNullResult()
 //        ;

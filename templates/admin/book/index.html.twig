@@ -6,29 +6,35 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 col-lg-9 col-lx-6 mx-auto">
-            <a href="{{ path('admin_book_create') }}" class="btn btn-outline-danger">Create a new book</a>
             <h4 class="my-3 text-secondary">Books:</h4>
                 {{ knp_pagination_render(pagination) }}
             <table class="table table-hover text-center">
                 <thead class="bg-secondary text-white">
                     <tr>
                         <th scope="col">image</th>
+                        <th scope="col">id</th>
+                        <th scope="col">category</th>
                         <th scope="col">isbn</th>
                         <th scope="col">title</th>
                         <th scope="col">status</th>
                         <th scope="col">authors</th>
+                        <th scope='col'>
+                            <a class="nav-item text-warning" href="{{ path('admin_book_create') }}">{{ 'Create' }}</a>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for book in pagination %}
                     <tr>
                         <td>
-                            <a href="{{ path('admin_show_book', {id: book.id}) }}">
+                            <a href="{{ path('admin_book_show', {id: book.id}) }}">
                                 <img src="{{ asset( 'build/images/' ~ book.image) }}"
                                     style="width: 70px; height: 99px;"
                                     alt="{{ 'image' }}">
                             </a>
                         </td>
+                        <td>{{ book.id }}</td>
+                        <td>{{ book.category }}</td>
                         <td>{{ book.isbn }}</td>
                         <td>{{ book.title }}</td>
                         <td>{{ book.status }}</td>
@@ -41,6 +47,17 @@
                                 <a class="dropdown-item" href="{{ path('show_author', {id: author.id})}}">{{ author.name }}</a>
                                 {% endfor %}
                             </div>
+                        </td>
+                        <td class="row">
+                            <div class="col-md-6">
+                                <a class="nav-link btn text-primary" href="{{ path('admin_book_edit', {id:book.id}) }}">{{ 'Edit' }}</a>
+                            </div>
+                            <div class="col-md-6">
+                                <form action="{{ path('admin_book_delete', { id: book.id }) }}" method="post">
+                                    <input type="hidden" name="token" value="{{ csrf_token('admin_book_delete') }}"/>
+                                    <button class="nav-link btn text-danger border-0 bg-transparent" type="submit">{{ 'Delete' }}</button>
+                                </form>
+                        </div>
                         </td>
                     </tr>
                     {% endfor %}

@@ -6,7 +6,6 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 col-lg-9 col-lx-6 mx-auto">
-            <a href="{{ path('admin_book_edit', {id: book.id}) }}" class="btn btn-outline-danger">Edit current book</a>
             <h4 class="my-3 text-primary">Book: <span class="text-dark h5">{{ book.title }}</span></h4>
             <h5 class="my-3">id: {{ book.id }}</h5>
 
@@ -54,49 +53,34 @@
             {% endif %}
             </div>
 
-            <h5 class="my-3">category name:
-                <a class="nav nav-link" href="{#{{ path('admin_show_category', {id: book.category.id}) }}#}">{{ book.category.name }}</a>
+            {# <h5 class="my-3">category name:
+                <a class="nav nav-link" href="{{ path('admin_show_category', {id: book.category.id}) }}">
+                    {% if book.category.name %}
+                    {{ book.category.name }}
+                    {% endif %}
+                </a>
             </h5>
 
             {% if book.category.subname %}
                 <h5 class="my-3">category subname: <span class="text-dark h6">{{ book.category.subname }}</span></h5>
-            {% endif %}
+            {% endif %} #}
 
             <h5 class="my-3">authors: 
                 {% for author in book.authors %}
-                    <a class="nav nav-link" href="#">{{ author.name }}</a>
+                    <a class="nav nav-link" href="{{ path('admin_show_author', {id: author.id}) }}">{{ author.name }}</a>
                 {% endfor %}
             </h5>
-            {# {{ knp_pagination_render(paginateCategories) }}
-
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                    <th scope="col">image</th>
-                    <th scope="col">title</th>
-                    <th scope="col">category</th>
-                    <th scope="col">subcategory</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for category in paginateCategories %}
-                    <tr>
-                    <th scope="row">
-                        <a href="{{ path('admin_show_book', {id:category.id}) }}">
-                            <img src="{{ asset('build/images/' ~ category.image) }}"
-                                style="width: 70px; height: 99px;"
-                                alt="{{ 'image' }}">
-                        </a>
-                    </th>
-                    <td>{{ category.title }}</td>
-                    <td>{{ category.category.name }}</td>
-                    <td>{{ category.category.subname }}</td>
-                    </tr>
-                    <tr>
-                {% endfor %}
-                </tbody>
-            </table> #}
-
+                <div class="row">
+                    <div class="col-md-6">
+                        <a class=" btn btn-primary" href="{{ path('admin_book_edit', {id:book.id}) }}">{{ 'Edit' }}</a>
+                    </div>
+                    <div class="col-md-6">
+                        <form action="{{ path('admin_book_delete', { id: book.id }) }}" method="post">
+                            <input type="hidden" name="token" value="{{ csrf_token('admin_book_delete') }}"/>
+                            <button class="btn btn-danger" type="submit">{{ 'Delete' }}</button>
+                        </form>
+                    </div>
+                </div>
         </div>
     </div>
 </div>

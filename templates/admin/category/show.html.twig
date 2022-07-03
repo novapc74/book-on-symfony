@@ -1,0 +1,38 @@
+{% extends 'admin/layouts/admin_page.html.twig' %}
+
+{% block title %} Show needle categories {% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-lg-9 col-lx-6 mx-auto">
+            <h4 class="my-3">Category: <span class="text-primary">{{ currentCategory.name }}</span></h4>
+
+            {{ knp_pagination_render(paginationNeedleBooks) }}
+            <table class="table table-hover text-center">
+                <thead class="bg-secondary text-white">
+                    <tr>
+                        <th scope="col">IMAGE</th>
+                        <th scope="col">TITLE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in paginationNeedleBooks %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('admin_show_book', {id: book.id}) }}">
+                                <img src="{{ asset( 'build/images/' ~ book.image) }}"
+                                    style="width: 70px; height: 99px;"
+                                    alt="{{ 'image' }}">
+                            </a>
+                        </td>
+                        <td>{{ book.title }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

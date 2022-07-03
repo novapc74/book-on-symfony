@@ -108,18 +108,14 @@ class EditBookFormType extends AbstractType
                     'placeholder' => 'Status'
                 ]
             ])
-            // ->add('image', TextType::class, [
-            //     'label' => 'image',
-            //     'label_attr' => [
-            //         'class' => 'pt-3'
-            //     ],
-            //     'required' => false,
-            //     'attr' => [
-            //         'class' => 'form-control'
-            //     ]
-            // ])
-            ->add('category')
-            ->add('authors', CollectionType::class, [
+            ->add('category'/*, CollectionType::class, [
+                'entry_type' => EditCategoryFormType::class,
+                'entry_options' => ['label' => false],
+                'by_reference' => false,
+                'allow_add' => true,
+                'allow_delete' => true,
+            ]*/)
+            ->add('authors'/*, CollectionType::class, [
                 'label' => 'Authors',
                 'label_attr' => [
                     'class' => 'pt-3'
@@ -129,7 +125,7 @@ class EditBookFormType extends AbstractType
                 'by_reference' => false,
                 'allow_add' => true,
                 'allow_delete' => true,
-            ])
+            ]*/)
         ;
     }
 

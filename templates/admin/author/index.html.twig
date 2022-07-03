@@ -1,0 +1,53 @@
+{% extends 'admin/layouts/admin_page.html.twig' %}
+
+{% block title %}Authors!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="coll mx-auto">
+            <h4 class="my-3 text-secondary">Authors:</h4>
+                {{ knp_pagination_render(pagination) }}
+            <table class="table table-hover text-center">
+                <thead class="bg-secondary text-white">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">author</th>
+                        <th scope="col">book</th>
+                        <th scope="col">create</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for author in pagination %}
+                    <tr>
+                    <td>{{author.id}}</td>
+                        <td><a href="{{ path('admin_show_author', {id: author.id}) }}" class="nav-link text-dark">{{ author.name }}</td>
+                        <td>
+                            <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% for book in author.books %}
+                                <a class="dropdown-item text-primary" href="{{ path('admin_book_show', {id: book.id}) }}">{{ book.title }}</a>
+                                {% endfor %}
+                            </div>
+                        </td>
+                        <td class="row">
+                            <div class="col-md-6">
+                                <a class="nav-link btn text-primary" href="{#{ path('admin_author_edit', {id:author.id}) }#}">{{ 'Edit' }}</a>
+                            </div>
+                            <div class="col-md-6">
+                                <form action="{{ path('admin_author_delete', { id: author.id }) }}" method="post">
+                                    <input type="hidden" name="token" value="{{ csrf_token('admin_category_delete') }}"/>
+                                    <button class="nav-link btn text-danger border-0 bg-transparent" type="submit">{{ 'Delete' }}</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
