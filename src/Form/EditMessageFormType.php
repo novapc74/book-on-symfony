@@ -58,18 +58,7 @@ class EditMessageFormType extends AbstractType
                     'placeholder' => 'phone format: +8(XXX) XXX-XX-XX',
                 ],
             ])
-            ->add('delivered', ChoiceType::class, [
-                'label' => 'Delivered',
-                'label_attr' => [
-                    'class' => 'pt-3'
-                ],
-                'choices' => [
-                    'Read' => true,
-                    'No read' => false,
-                ],
-                'expanded' => true,
-                'multiple' => false,
-            ])
+            ->add('delivered')
             ->add('captcha', ReCaptchaType::class);
     }
 
