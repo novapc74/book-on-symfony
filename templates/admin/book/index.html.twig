@@ -44,7 +44,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             {% for author in book.authors %}
-                                <a class="dropdown-item" href="{{ path('show_author', {id: author.id})}}">{{ author.name }}</a>
+                                <a class="dropdown-item" href="{{ path('admin_show_author', {id: author.id})}}">{{ author.name }}</a>
                                 {% endfor %}
                             </div>
                         </td>
